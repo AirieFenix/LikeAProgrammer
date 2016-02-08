@@ -61,13 +61,11 @@ char cipher(char letter) {
 
 char decipher(char letter) {
 
-	//cout << letter;
 	if (letter == 32) {
 		return ' ';
 	}
 	else {
 		for (int position = 0; position < ALPHABET_SIZE; position++) {
-			//cout<<position<<"\n";
 			if (letter == CIPHER_ALPHABET[position]){
 				return position + 97;
 			}
