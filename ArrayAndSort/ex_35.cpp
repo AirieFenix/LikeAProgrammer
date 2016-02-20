@@ -1,5 +1,6 @@
-// Cipher / de-cipher program
-// "Sometimes when you fill a vacuum, it still sucks." - Dennis Ritchie
+// 	Cipher / de-cipher program
+// 	"Sometimes when you fill a vacuum, it still sucks." - Dennis Ritchie
+//	Ale Zuvic, 7.2.2016
 
 #include <iostream>
 

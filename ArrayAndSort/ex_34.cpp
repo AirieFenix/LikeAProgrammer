@@ -1,5 +1,6 @@
-// Cipher
-// 
+//	Cipher
+//	"What Wehrner von Braun do?" - Destin, Smarter Every Day
+// 	Ale Zuvic, 06.02.2016
 
 #include <iostream>
 
