@@ -2,6 +2,11 @@
 //	Build a list of students, and implement "addRecord" and "averageRecord"
 //	addRecord(*listOfStudents, int studentNumber, int studentGrade)
 //	double averageRecord(*listOfStudents)
+//	Made with a help from the book. Shit pointers are impossible :(
+//	
+//	“The struggle you’re in today is developing the strength you 
+//	need for tomorrow” - Unknown
+//	Ale Zuvic 22.2.16
 
 #include <iostream>
 using std::cin;
@@ -16,6 +21,7 @@ struct node {
 typedef node *studentCollection;
 
 void addRecord(studentCollection &head, int number, int grade);
+double averageRecord(studentCollection &head);
 void printList(studentCollection &head);
 
 int main () {
@@ -27,10 +33,12 @@ int main () {
 	addRecord(registerHead, 1, 2);
 	addRecord(registerHead, 2, 3);
 	addRecord(registerHead, 3, 4);
+	addRecord(registerHead, 45, 187);
 	//cout << registerHead -> studentNumber << " " << registerHead -> studentGrade;
 	//cout << " " << registerHead -> nextPtr;
 
 	printList(registerHead);
+	cout << "\nThe average grade of the collection is: " << averageRecord(registerHead);
 
 	cout<<"\n";
 	return 0;
@@ -40,29 +48,32 @@ void addRecord(studentCollection &head, int number, int grade) {
 		
 	node *student = new node;
 
-	if (head -> nextPtr == NULL && head -> studentGrade == 0 && head -> studentNumber == 0) {
-		student = head;
-		student -> studentGrade = grade;
-		student -> studentNumber = number;
+	student -> studentGrade = grade;
+	student -> studentNumber = number;
+	student -> nextPtr = head;
+
+	head = student;
+}
+
+double averageRecord (studentCollection &head) {
+
+	node *tracker = new node;
+	tracker = head;
+	double gradesSum = 0;
+	int nodes = 0;
+
+	if (tracker -> nextPtr == NULL) {
+		return (double) tracker->studentGrade;
 	}
 
-	else if (head -> nextPtr == NULL && (head -> studentGrade != 0 || head -> studentNumber != 0)) {
-		head -> nextPtr = student;
-		student -> studentGrade = grade;
-		student -> studentNumber = number;
-		student -> nextPtr = NULL;
-	}
+	while (tracker -> nextPtr != NULL) {
+		gradesSum += tracker -> studentGrade;
+		nodes ++;
+		tracker = tracker -> nextPtr;
+	};
 
-	if (head -> nextPtr != NULL) {
-		student = head -> nextPtr;
 
-		while (student -> nextPtr != NULL) {
-			student = student -> nextPtr;
-		}
-		student -> studentGrade = grade;
-		student -> studentNumber = number;
-		student -> nextPtr = NULL;
-	}
+	return (double) (gradesSum / nodes);
 }
 
 void printList(studentCollection &head) {
@@ -70,10 +81,9 @@ void printList(studentCollection &head) {
 	node *tracker = new node;
 	tracker = head;
 
-	do {
+	while (tracker -> nextPtr != NULL) {
 		cout << "\nStudent: " << tracker -> studentNumber << ", grade: " << tracker -> studentGrade;
-		if (tracker -> nextPtr != NULL) {
-			tracker = tracker -> nextPtr;
-		} 
-	} while (tracker -> nextPtr != NULL);
+		tracker = tracker -> nextPtr;
+		//cout << tracker -> nextPtr;
+	};
 }
