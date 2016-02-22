@@ -21,7 +21,7 @@ struct node {
 typedef node *studentCollection;
 
 void addRecord(studentCollection &head, int number, int grade);
-double averageRecord(studentCollection &head);
+double averageRecord(studentCollection head);
 void printList(studentCollection &head);
 
 int main () {
@@ -55,23 +55,21 @@ void addRecord(studentCollection &head, int number, int grade) {
 	head = student;
 }
 
-double averageRecord (studentCollection &head) {
+double averageRecord (studentCollection head) {
 
-	node *tracker = new node;
-	tracker = head;
+	node *tracker = head;
 	double gradesSum = 0;
 	int nodes = 0;
 
-	if (tracker -> nextPtr == NULL) {
-		return (double) tracker->studentGrade;
+	if (tracker -> nextPtr == NULL || head == NULL) {
+		return 0;
 	}
 
 	while (tracker -> nextPtr != NULL) {
+		nodes++;
 		gradesSum += tracker -> studentGrade;
-		nodes ++;
 		tracker = tracker -> nextPtr;
 	};
-
 
 	return (double) (gradesSum / nodes);
 }
