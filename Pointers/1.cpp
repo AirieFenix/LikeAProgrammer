@@ -20,8 +20,13 @@ int main () {
 
 	cout << "\n Numb changed by pointer = " << numb << "\n";
 
-	int *ptrA = new *ptrA;
-	*ptrA = 55;
+	int *ptrA = new int;
+	//*ptrA = 55;
+
+	cout << "\n ptrA = " << ptrA;
+	cout << "\n *ptrA = " << *ptrA;
+
+	cout << "\n";
 
 	return 0;
 }
